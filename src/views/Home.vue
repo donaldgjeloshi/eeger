@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
     <h1 class="text-center mb-5">My component based structure</h1>
     <div class="row">
       <div class="col-md-9 col-12">
@@ -17,7 +16,6 @@
 
 <script>
 // @ is an alias to /src
-//import HelloWorld from "@/components/HelloWorld.vue";
 import NewsHolder from "@/components/NewsHolder";
 import AddsHolder from "@/components/AddsHolder";
 import LinkHolder from "@/components/LinkHolder";

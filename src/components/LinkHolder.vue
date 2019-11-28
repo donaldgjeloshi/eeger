@@ -15,9 +15,9 @@ export default Vue.extend({
   data() {
     return {
       links: [
-        { url: "/sport", name: "Sport News " },
-        { url: "/economy", name: "Economy News " },
-        { url: "/latest", name: "Latest News " }
+        { url: process.env.BASE_URL + "sport/", name: "Sport News " },
+        { url: process.env.BASE_URL + "economy/", name: "Economy News " },
+        { url: process.env.BASE_URL + "latest/", name: "Latest News " }
       ]
     };
   }
