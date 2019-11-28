@@ -19,11 +19,6 @@
 
 export default {
   name: "home",
-  components: {
-    NewsHolder,
-    LinkHolder,
-    AddsHolder
-  },
   methods: {
     newsRead(num) {
       alert("You read news! Number is: " + num);

@@ -2,7 +2,7 @@
   <div>
     <p class="mt-5 text-secondary">Adds</p>
     <div class="mt-2">
-      <div v-for="add in adds" v-bind:key="add">
+      <div v-for="add in adds" v-bind:key="add.id">
         <a href="#">
           <img v-bind:src="add" alt="image" class="d-block mb-3" />
         </a>

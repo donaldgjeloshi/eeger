@@ -7,7 +7,7 @@ import store from "./store";
 Vue.config.productionTip = false;
 
 //if no js file name occurs then it will look for index.js.
-require("@/components/news");
+import "@/components/news";
 
 new Vue({
   router,

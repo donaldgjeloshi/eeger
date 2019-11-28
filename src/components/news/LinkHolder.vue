@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h5>Additional lonks</h5>
+    <h5>Additional links</h5>
     <div class="link-container">
-      <p v-for="link in links" v-bind:key="link">
+      <p v-for="link in links" v-bind:key="link.id">
         <a v-bind:href="link.url">{{ link.name }}</a>
       </p>
     </div>
