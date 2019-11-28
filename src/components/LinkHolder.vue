@@ -2,7 +2,7 @@
   <div>
     <h5>Additional lonks</h5>
     <div class="link-container">
-      <p v-for="link in links" v-bind:key="link">
+      <p v-for="(link, index) in links" v-bind:key="index">
         <a v-bind:href="link.url">{{ link.name }}</a>
       </p>
     </div>

@@ -21,7 +21,7 @@ export default Vue.extend({
   name: "NewsHolder",
 
   props: {
-    data: {
+    date: {
       type: String,
       required: false,
       default: "today"
