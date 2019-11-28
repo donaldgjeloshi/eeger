@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>|
-      <router-link to="/record">Record</router-link>
-    </div>
+    <!--A functional component that renders the matched component for the given path. 
+    Components rendered in <router-view> can also contain its own 
+    <router-view>, which will render components for nested paths.-->
     <router-view />
   </div>
 </template>
