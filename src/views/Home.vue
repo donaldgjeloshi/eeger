@@ -16,9 +16,6 @@
 
 <script>
 // @ is an alias to /src
-import NewsHolder from "@/components/NewsHolder";
-import AddsHolder from "@/components/AddsHolder";
-import LinkHolder from "@/components/LinkHolder";
 
 export default {
   name: "home",
