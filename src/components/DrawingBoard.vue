@@ -1,25 +1,22 @@
 <template>
-  <div id="canvas">
+  <div id="background">
     <canvas
       ref="canvas"
       v-on:mousedown="handleMouseDown"
       v-on:mouseup="handleMouseUp"
       v-on:mousemove="handleMouseMove"
-      width="700px"
+      width="800px"
       height="600px"
     ></canvas>
   </div>
 </template>
+
 <script>
 export default {
   data() {
     return {
       mouse: {
         current: {
-          x: 0,
-          y: 0
-        },
-        previous: {
           x: 0,
           y: 0
         },
@@ -32,7 +29,7 @@ export default {
     currentMouse: function() {
       // rect is a DOMRect(rectangle) object with eight properties:
       //left, top, right, bottom, x, y, width, height
-      const rect = this.refs.canvas.getBoundingClientRect(); // Assert that c is non-null and access getBoundingClientRect()
+      const rect = this.$refs.canvas.getBoundingClientRect(); // Assert that c is non-null and access getBoundingClientRect()
 
       return {
         x: this.mouse.current.x - rect.left,
@@ -44,18 +41,13 @@ export default {
   methods: {
     draw(event) {
       if (this.mouse.down) {
-        const c = this.refs.canvas;
-        if (canvas.getContext) {
-          const stx = c.getContext("2d");
-
-          ctx.clearRect(0, 0, 800, 800);
-          ctx.lineTo(this.currentMouse.x, this.currentMouse.y);
-          ctx.strokeStyle = "#F60E02";
-          ctx.lineWidth = 2;
-          ctx.stroke();
-        } else {
-          alert("your Browser doesn't support canvas HTMLElement!!!");
-        }
+        const c = this.$refs.canvas;
+        const ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 800, 600);
+        ctx.lineTo(this.currentMouse.x, this.currentMouse.y);
+        ctx.strokeStyle = "#F60E02";
+        ctx.lineWidth = 2;
+        ctx.stroke();
       }
     },
     handleMouseDown(event) {
@@ -64,7 +56,7 @@ export default {
         x: event.pageX,
         y: event.pageY
       };
-      const c = this.refs.canvas;
+      const c = this.$refs.canvas;
       const ctx = c.getContext("2d");
 
       ctx.moveTo(this.currentMouse.x, this.currentMouse.y);
@@ -82,3 +74,10 @@ export default {
   }
 };
 </script>
+
+<style lang="stylus" scoped>
+canvas {
+  background: white;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
+}
+</style>
