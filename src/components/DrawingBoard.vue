@@ -29,7 +29,7 @@ export default {
     currentMouse: function() {
       // rect is a DOMRect(rectangle) object with eight properties:
       //left, top, right, bottom, x, y, width, height
-      const rect = this.$refs.canvas.getBoundingClientRect(); // Assert that c is non-null and access getBoundingClientRect()
+      const rect = this.$refs.canvas.getBoundingClientRect(); //Assert that c is non-null and access getBoundingClientRect()
 
       return {
         x: this.mouse.current.x - rect.left,
