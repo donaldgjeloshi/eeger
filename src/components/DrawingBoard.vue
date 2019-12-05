@@ -1,13 +1,31 @@
 <template>
-  <div id="background">
-    <canvas
-      ref="canvas"
-      v-on:mousedown="handleMouseDown"
-      v-on:mouseup="handleMouseUp"
-      v-on:mousemove="handleMouseMove"
-      width="800px"
-      height="600px"
-    ></canvas>
+  <div id="background" class="row row-no-gutters">
+    <div class="col-sm-9">
+      <canvas
+        ref="canvas"
+        v-on:mousedown="handleMouseDown"
+        v-on:mouseup="handleMouseUp"
+        v-on:mousemove="handleMouseMove"
+        width="800px"
+        height="600px"
+      ></canvas>
+    </div>
+    <div class="container col-sm-3">
+      <button type="button" class="btn btn-info" id="record">record</button>
+      <br />
+      <br />
+      <button type="button" class="btn btn-info" id="play">Play</button>
+      <br />
+      <br />
+      <button
+        v-on:click="clear()"
+        type="button"
+        class="btn btn-info"
+        id="clear"
+      >
+        Clear
+      </button>
+    </div>
   </div>
 </template>
 
@@ -43,9 +61,9 @@ export default {
       if (this.mouse.down) {
         const c = this.$refs.canvas;
         const ctx = c.getContext("2d");
-        ctx.clearRect(0, 0, 800, 600);
+        ctx.clearRect(0, 0, c.width, c.height);
         ctx.lineTo(this.currentMouse.x, this.currentMouse.y);
-        ctx.strokeStyle = "#F60E02";
+        ctx.strokeStyle = "blue";
         ctx.lineWidth = 2;
         ctx.stroke();
       }
@@ -70,6 +88,12 @@ export default {
         y: event.pageY
       };
       this.draw(event);
+    },
+    clear() {
+      const c = this.$refs.canvas;
+      const ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.beginPath(); //see mdn docu
     }
   }
 };
