@@ -16,7 +16,7 @@ export default {
     return {};
   },
   methods: {
-    squack: function(text) {
+    squack(text) {
       alert(text);
     }
   },
