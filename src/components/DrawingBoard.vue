@@ -6,8 +6,8 @@
         v-on:mousedown="handleMouseDown"
         v-on:mouseup="handleMouseUp"
         v-on:mousemove="handleMouseMove"
-        width="800px"
-        height="600px"
+        width="1000px"
+        height="550px"
       ></canvas>
     </div>
     <div class="container col-sm-3">
