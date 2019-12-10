@@ -46,7 +46,7 @@ export default {
   computed: {
     currentMouse: function() {
       // rect is a DOMRect(rectangle) object with eight properties:
-      //left, top, right, bottom, x, y, width, height
+      // left, top, right, bottom, x, y, width, height
       const rect = this.$refs.canvas.getBoundingClientRect(); //Assert that c is non-null and access getBoundingClientRect()
 
       return {
