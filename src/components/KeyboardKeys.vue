@@ -4,7 +4,7 @@
       <canvas
         v-on:keydown="type($event)"
         ref="canvas"
-        width="100px"
+        width="200px"
         height="70px"
       ></canvas>
     </div>
@@ -16,20 +16,20 @@ export default {
     return {};
   },
   methods: {
-    typedKey: function(event) {
+    typedKey: function(e) {
       const c = this.$refs.canvas;
       const ctx = c.getContext("2d");
       ctx.font = "30px Arial";
       //clear the canvas before typing the new number
       ctx.clearRect(0, 0, c.width, c.height);
       ctx.beginPath(); //see mdn docu
-      //convert Unicode value in characters
-      const char = String.fromCharCode(event.keyCode);
-      //show the number
+      const char = e.code;
+      //console.log(e);
       ctx.fillText(char, 40, 50);
     }
   },
   mounted() {
+    //event keydown
     document.addEventListener("keydown", this.typedKey);
   }
 };
