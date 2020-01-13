@@ -1,12 +1,7 @@
 <template>
   <div>
     <div class="col-sm-9">
-      <canvas
-        v-on:keydown="type($event)"
-        ref="canvas"
-        width="200px"
-        height="70px"
-      ></canvas>
+      <canvas ref="canvas" width="200px" height="70px"></canvas>
     </div>
   </div>
 </template>
@@ -23,7 +18,7 @@ export default {
       //clear the canvas before typing the new number
       ctx.clearRect(0, 0, c.width, c.height);
       ctx.beginPath(); //see mdn docu
-      const char = e.code;
+      const char = e.key;
       //console.log(e);
       ctx.fillText(char, 40, 50);
     }

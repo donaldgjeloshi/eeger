@@ -42,7 +42,7 @@ export default {
         },
         down: false
       },
-      move: []
+      recording: []
     };
   },
 
@@ -81,12 +81,12 @@ export default {
       const ctx = c.getContext("2d");
 
       ctx.moveTo(this.currentMouse.x, this.currentMouse.y);
-      console.log("x: ", this.currentMouse.x);
-      console.log("y: ", this.currentMouse.y);
+      //console.log("x: ", this.currentMouse.x);
+      //console.log("y: ", this.currentMouse.y);
     },
     handleMouseUp() {
       this.mouse.down = false;
-      console.log(this.mouse.down);
+      //console.log(this.mouse.down);
     },
     handleMouseMove(event) {
       this.mouse.current = {
@@ -96,7 +96,14 @@ export default {
         z: Date.now()
       };
       if (this.mouse.down) {
-        console.log(this.mouse.current);
+        this.recording.push({
+          x: this.mouse.current.x,
+          y: this.mouse.current.y - 60,
+          time: this.mouse.current.z
+        });
+        // convert array to JSON
+        const frame = JSON.stringify(this.recording);
+        console.log(frame);
       }
       this.draw(event);
     },
