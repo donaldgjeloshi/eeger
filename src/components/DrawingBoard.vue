@@ -11,7 +11,9 @@
       ></canvas>
     </div>
     <div class="container col-sm-3">
-      <button type="button" class="btn btn-info" id="record">record</button>
+      <button ref="record" type="button" class="btn btn-info" id="record">
+        record
+      </button>
       <br />
       <br />
       <button type="button" class="btn btn-info" id="play">Play</button>
@@ -39,14 +41,15 @@ export default {
           y: 0
         },
         down: false
-      }
+      },
+      recording: []
     };
   },
 
   computed: {
     currentMouse: function() {
       // rect is a DOMRect(rectangle) object with eight properties:
-      //left, top, right, bottom, x, y, width, height
+      // left, top, right, bottom, x, y, width, height
       const rect = this.$refs.canvas.getBoundingClientRect(); //Assert that c is non-null and access getBoundingClientRect()
 
       return {
@@ -78,15 +81,30 @@ export default {
       const ctx = c.getContext("2d");
 
       ctx.moveTo(this.currentMouse.x, this.currentMouse.y);
+      //console.log("x: ", this.currentMouse.x);
+      //console.log("y: ", this.currentMouse.y);
     },
     handleMouseUp() {
       this.mouse.down = false;
+      //console.log(this.mouse.down);
     },
     handleMouseMove(event) {
       this.mouse.current = {
         x: event.pageX,
-        y: event.pageY
+        y: event.pageY,
+        //date
+        z: Date.now()
       };
+      if (this.mouse.down) {
+        this.recording.push({
+          x: this.mouse.current.x,
+          y: this.mouse.current.y - 60,
+          time: this.mouse.current.z
+        });
+        // convert array to JSON
+        const frame = JSON.stringify(this.recording);
+        console.log(frame);
+      }
       this.draw(event);
     },
     clear() {
@@ -94,7 +112,16 @@ export default {
       const ctx = c.getContext("2d");
       ctx.clearRect(0, 0, c.width, c.height);
       ctx.beginPath(); //see mdn docu
-    }
+    } /* ,
+
+    record() {
+      document.mousemove(function(e) {
+        this.move.push({
+          x: e.pageX,
+          y: e.pageY
+        });
+      });
+    } */
   }
 };
 </script>
