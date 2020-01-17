@@ -10,6 +10,7 @@
         height="550px"
       ></canvas>
     </div>
+
     <div class="container col-sm-3">
       <button ref="record" type="button" class="btn btn-info" id="record">
         record
@@ -27,6 +28,18 @@
       >
         Clear
       </button>
+      <br />
+      <br />
+      <button
+        type="button"
+        class="btn btn-info"
+        v-on:click="download('data.json', 'text/json')"
+      >
+        Create file
+      </button>
+      <br />
+      <br />
+      <a ref="download" href="">download</a>
     </div>
   </div>
 </template>
@@ -81,12 +94,9 @@ export default {
       const ctx = c.getContext("2d");
 
       ctx.moveTo(this.currentMouse.x, this.currentMouse.y);
-      //console.log("x: ", this.currentMouse.x);
-      //console.log("y: ", this.currentMouse.y);
     },
     handleMouseUp() {
       this.mouse.down = false;
-      //console.log(this.mouse.down);
     },
     handleMouseMove(event) {
       this.mouse.current = {
@@ -101,9 +111,6 @@ export default {
           y: this.mouse.current.y - 60,
           time: this.mouse.current.z
         });
-        // convert array to JSON
-        const frame = JSON.stringify(this.recording);
-        console.log(frame);
       }
       this.draw(event);
     },
@@ -112,16 +119,16 @@ export default {
       const ctx = c.getContext("2d");
       ctx.clearRect(0, 0, c.width, c.height);
       ctx.beginPath(); //see mdn docu
-    } /* ,
-
-    record() {
-      document.mousemove(function(e) {
-        this.move.push({
-          x: e.pageX,
-          y: e.pageY
-        });
+    },
+    download(name, type) {
+      const a = this.$refs.download;
+      const file = new Blob([JSON.stringify(this.recording, null, 2)], {
+        type: "application/json"
       });
-    } */
+
+      a.href = URL.createObjectURL(file);
+      a.download = name;
+    }
   }
 };
 </script>
