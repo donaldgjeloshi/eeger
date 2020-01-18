@@ -33,13 +33,13 @@
       <button
         type="button"
         class="btn btn-info"
-        v-on:click="download('data.json', 'text/json')"
+        v-on:click="download('text/json')"
       >
         Create file
       </button>
       <br />
       <br />
-      <a v-on:click="clear()" ref="download" href="">download</a>
+      <a v-on:click="clear()" ref="downloadLink" href="">download</a>
     </div>
   </div>
 </template>
@@ -59,19 +59,7 @@ export default {
       recording: [
         {
           windowInnerHeight: window.innerHeight,
-          windowInnerWidth: window.innerWidth,
-          Date:
-            new Date().getDate() +
-            "/" +
-            `${new Date().getMonth() + 1}` +
-            "/" +
-            new Date().getFullYear() +
-            "  " +
-            new Date().getHours() +
-            ":" +
-            new Date().getMinutes() +
-            ":" +
-            new Date().getSeconds()
+          windowInnerWidth: window.innerWidth
         }
       ]
     };
@@ -129,7 +117,6 @@ export default {
           y: this.mouse.current.y - 60,
           time: this.mouse.current.z
         });
-        console.log(this.recording);
       }
       this.draw(event);
     },
@@ -141,30 +128,37 @@ export default {
       this.recording = [
         {
           windowInnerHeight: window.innerHeight,
-          windowInnerWidth: window.innerWidth,
-          Date:
-            new Date().getDate() +
-            "/" +
-            `${new Date().getMonth() + 1}` +
-            "/" +
-            new Date().getFullYear() +
-            "  " +
-            new Date().getHours() +
-            ":" +
-            new Date().getMinutes() +
-            ":" +
-            new Date().getSeconds()
+          windowInnerWidth: window.innerWidth
         }
       ];
     },
-    download(name, type) {
-      const a = this.$refs.download;
+    download(type) {
+      const a = this.$refs.downloadLink;
       const file = new Blob([JSON.stringify(this.recording, null, 2)], {
         type: "application/json"
       });
-
+      //get new date for the name file
+      let time = new Date();
+      let date =
+        time.getDate() +
+        "/" +
+        `${time.getMonth() + 1}` +
+        "/" +
+        time.getFullYear() +
+        "-" +
+        time.getHours() +
+        ":" +
+        time.getMinutes() +
+        ":" +
+        time.getSeconds();
+      // get the name of the user
+      const person = prompt("Please enter your name:");
+      if (person == null || person == "") {
+        alert("Enter your name in order to save the file!");
+      }
+      //prepare the link for download
       a.href = URL.createObjectURL(file);
-      a.download = name;
+      a.download = person + "_" + date + ".json";
       this.recording = [];
     }
   }
