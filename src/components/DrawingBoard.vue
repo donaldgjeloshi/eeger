@@ -55,7 +55,25 @@ export default {
         },
         down: false
       },
-      recording: []
+
+      recording: [
+        {
+          windowInnerHeight: window.innerHeight,
+          windowInnerWidth: window.innerWidth,
+          Date:
+            new Date().getDate() +
+            "/" +
+            `${new Date().getMonth() + 1}` +
+            "/" +
+            new Date().getFullYear() +
+            "  " +
+            new Date().getHours() +
+            ":" +
+            new Date().getMinutes() +
+            ":" +
+            new Date().getSeconds()
+        }
+      ]
     };
   },
 
@@ -120,7 +138,24 @@ export default {
       const ctx = c.getContext("2d");
       ctx.clearRect(0, 0, c.width, c.height);
       ctx.beginPath(); //see mdn docu
-      this.recording = [];
+      this.recording = [
+        {
+          windowInnerHeight: window.innerHeight,
+          windowInnerWidth: window.innerWidth,
+          Date:
+            new Date().getDate() +
+            "/" +
+            `${new Date().getMonth() + 1}` +
+            "/" +
+            new Date().getFullYear() +
+            "  " +
+            new Date().getHours() +
+            ":" +
+            new Date().getMinutes() +
+            ":" +
+            new Date().getSeconds()
+        }
+      ];
     },
     download(name, type) {
       const a = this.$refs.download;
