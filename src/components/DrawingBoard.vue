@@ -39,7 +39,7 @@
       </button>
       <br />
       <br />
-      <a v-on:click="clear()" ref="downloadLink" href="">download</a>
+      <a v-on:click="clear()" ref="downloadLink" href="">Download</a>
     </div>
   </div>
 </template>
@@ -111,6 +111,7 @@ export default {
         //date
         z: Date.now()
       };
+      //record
       if (this.mouse.down) {
         this.recording.push({
           x: this.mouse.current.x,
@@ -132,6 +133,7 @@ export default {
         }
       ];
     },
+
     download(type) {
       const a = this.$refs.downloadLink;
       const file = new Blob([JSON.stringify(this.recording, null, 2)], {
@@ -160,6 +162,17 @@ export default {
       a.href = URL.createObjectURL(file);
       a.download = person + "_" + date + ".json";
       this.recording = [];
+    },
+    playback() {
+      if (this.mouse.down) {
+        const c = this.$refs.canvas;
+        const ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, c.width, c.height);
+        ctx.lineTo(this.currentMouse.x, this.currentMouse.y);
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
     }
   }
 };
