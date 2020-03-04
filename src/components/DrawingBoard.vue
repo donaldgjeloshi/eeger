@@ -11,15 +11,7 @@
       ></canvas>
     </div>
 
-    <div class="container col-sm-3">
-      <button ref="record" type="button" class="btn btn-info" id="record">
-        record
-      </button>
-      <br />
-      <br />
-      <button type="button" class="btn btn-info" id="play">Play</button>
-      <br />
-      <br />
+    <div class="col-sm-3">
       <button
         v-on:click="clear()"
         type="button"
@@ -39,7 +31,13 @@
       </button>
       <br />
       <br />
-      <a v-on:click="clear()" ref="downloadLink" href="">Download</a>
+      <a
+        v-on:click="clear()"
+        ref="downloadLink"
+        href=""
+        style="color: rgb(69,162,184)"
+        >Download the JSON file</a
+      >
     </div>
   </div>
 </template>
